@@ -1,0 +1,19 @@
+### Login Route
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "asldkjqwe@aslkdh.com",
+    "password": "asdqwe123"
+}
+
+### Register Route
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "email": "asldkjqwe@aslkdh.com",
+    "password": "asdqwe123"
+}
+
+###
