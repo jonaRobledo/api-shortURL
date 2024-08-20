@@ -1,0 +1,21 @@
+### Test Auth Routes
+
+### Test /register route
+POST http://localhost:3000/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "email": "jonarobledo@gmail.com",
+    "password": "asdqwe123"
+}
+
+### Test /login route
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "jonarobledo@gmail.com",
+    "password": "asdqwe123"
+}
+
+### asd
