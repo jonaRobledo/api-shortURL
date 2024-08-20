@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 // Auth Routes
-app.use('/api', authRouter)
+app.use('/api/v1/auth', authRouter)
 
 // Server run
 app.listen(process.env.PORT || 3000, () => {
