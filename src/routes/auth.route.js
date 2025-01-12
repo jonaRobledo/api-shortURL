@@ -9,7 +9,8 @@ const authRouter = Router()
 authRouter.post('/login', authValidation, login)
 
 authRouter.post('/register', authValidation, register)
-/*[
+/* Validation migrated to custom Middleware
+[
 	body('email', 'Incorrect email format').trim().isEmail().normalizeEmail(),
 	body('password', 'Incorrect password format')
 		.trim()

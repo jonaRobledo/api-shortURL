@@ -18,19 +18,22 @@ const userSchema = new Schema({
 	}
 })
 
+// Anonymous Function to use the context of This
 userSchema.pre('save', async function (next) {
-	const user = this
-
-	if (!user.isModified('password')) return next()
+	if (!this.isModified('password')) return next()
 
 	try {
 		const salt = await bcryptjs.genSalt(10)
-		user.password = await bcryptjs.hash(user.password, salt)
+		this.password = await bcryptjs.hash(this.password, salt)
 		next()
 	} catch (error) {
 		console.log(error)
 		throw new Error('Fallo el hash de Contraseña')
 	}
 })
+
+userSchema.methods.comparePassword = async function (clientPassword) {
+	return await bcryptjs.compare(clientPassword, this.password)
+}
 
 export const User = model('User', userSchema)
