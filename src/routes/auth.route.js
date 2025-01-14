@@ -1,8 +1,9 @@
 import { Router } from 'express'
 // import { body } from 'express-validator'
 
-import { login, register } from '../controllers/auth.controller.js'
+import { getUser, login, register } from '../controllers/auth.controller.js'
 import { authValidation } from '../middlewares/validation.js'
+import { validateToken } from '../middlewares/validateToken.js'
 
 const authRouter = Router()
 
@@ -16,5 +17,8 @@ authRouter.post('/register', authValidation, register)
 		.trim()
 		.isLength({ min: 8, max: 18 })
 ],*/
+
+// Example Route to test Token validation
+authRouter.get('/getUser', validateToken, getUser)
 
 export default authRouter
