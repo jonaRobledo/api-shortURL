@@ -2,7 +2,7 @@ import { Router } from 'express'
 // import { body } from 'express-validator'
 
 import { getUser, login, register } from '../controllers/auth.controller.js'
-import { authValidation } from '../middlewares/validation.js'
+import { authValidation } from '../middlewares/validateUser.js'
 import { validateToken } from '../middlewares/validateToken.js'
 
 const authRouter = Router()

@@ -1,6 +1,7 @@
 import { body, validationResult } from 'express-validator'
 
 // Middleware for Validation of User data
+//! Change name authValidation by dataValidation
 export const authValidation = (req, res, next) => {
 	// Validation with Express-Validator
 	body('email', 'Incorrect email format').trim().isEmail().normalizeEmail()

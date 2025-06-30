@@ -17,12 +17,15 @@ app.use(express.json())
 app.use(morgan('tiny'))
 
 // Routes
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
 	res.send('Server Running')
-})
+}) */
 
 // Auth Routes
 app.use('/api/v1/auth', authRouter)
+
+// Public Resources
+app.use(express.static('src/public'))
 
 // Server run
 app.listen(process.env.PORT || 3000, () => {

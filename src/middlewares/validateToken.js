@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 export const validateToken = (req, res, next) => {
 	try {
-		//
 		const token = req.headers?.authorization.replace('Bearer ', '')
 		if (!token) throw new Error('Nonexistent Token')
 
@@ -11,7 +10,6 @@ export const validateToken = (req, res, next) => {
 
 		next()
 	} catch (error) {
-		//
 		console.log(error)
 		res.status(401).json({ error: error.message })
 	}

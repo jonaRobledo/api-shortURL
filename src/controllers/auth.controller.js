@@ -9,9 +9,11 @@ export const login = async (req, res) => {
 	const { email, password } = req.body
 
 	try {
+		// Search User by email
 		const findUser = await User.findOne({ email })
-		if (!findUser) throw { message: 'User not Found', code: 404 }
+		if (!findUser) throw { message: 'Invalid Credentials', code: 403 }
 
+		// Compare Client password with User password
 		const validatePassword = await findUser.comparePassword(password)
 		if (!validatePassword) throw { message: 'Invalid Credentials', code: 403 }
 
@@ -30,7 +32,9 @@ export const register = async (req, res) => {
 	const { email, password } = req.body
 
 	try {
+		// Create a User instance
 		const user = new User({ email, password })
+		// Save User instance in DB
 		await user.save()
 
 		// JWT
