@@ -20,6 +20,10 @@ export const login = async (req, res) => {
 		// Generate the Token
 		const { token, expiresIn } = generateToken(findUser.id)
 
+		res.cookie('token', token, {
+			httpOnly: true,
+			secure: !(process.env.MODO === 'developer')
+		})
 		res.json({ ok: 'Authenticated User', token, expiresIn })
 	} catch (error) {
 		console.log(error)
@@ -49,11 +53,13 @@ export const register = async (req, res) => {
 
 // Example Controller to test Token validation
 export const getUser = async (req, res) => {
-	const uid = req.uid
+	const { uid } = req
 	try {
+		// Search User data by ID
 		const user = await User.findById(uid).lean()
 		res.json({ uid, email: user.email })
 	} catch (error) {
 		console.log(error)
+		res.status(500).json({ error: 'Server Error' })
 	}
 }

@@ -4,6 +4,7 @@ import 'dotenv/config'
 // Import project dependencies
 import express from 'express'
 import morgan from 'morgan'
+import cookieParser from 'cookie-parser'
 
 // Import your project modules
 import './src/database/connect-db.js'
@@ -14,6 +15,7 @@ const app = express()
 
 // Middlewares
 app.use(express.json())
+app.use(cookieParser())
 app.use(morgan('tiny'))
 
 // Routes

@@ -18,6 +18,9 @@ Content-Type: application/json
     "password": "asdqwe123"
 }
 
+### Test /getUser with Cookies
+GET http://localhost:3000/api/v1/auth/getUser
+
 ### Test /login route with User email invalidated
 POST http://localhost:3000/api/v1/auth/login
 Content-Type: application/json
@@ -36,13 +39,13 @@ Content-Type: application/json
     "password": "asdqwe123456"
 }
 
-### Test /getUser route to Token validate with Bad Token
+### Test /getUser route to Token validate with Bad Token (Bearer Token)
 GET http://localhost:3000/api/v1/auth/getUser
 Authorization: Bearer asdqwe123
 
 ### Test /getUser route without Token
 GET http://localhost:3000/api/v1/auth/getUser
 
-### Test /getUser route to Token validate
+### Test /getUser route to Token validate (Bearer Token)
 GET http://localhost:3000/api/v1/auth/getUser
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Nzg0MmMyYmJlODRlZTM0NzdkZTI2Y2YiLCJpYXQiOjE3MzY4Mzc4ODQsImV4cCI6MTczNjgzODc4NH0.q-8sA2kZ_W0ArbYqmdhhHuNTlJNCh4xKlQFpjUE24eM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Nzg0MmMyYmJlODRlZTM0NzdkZTI2Y2YiLCJpYXQiOjE3NTIyOTc5ODMsImV4cCI6MTc1MjMwNTE4M30._I_5EdKQX2M1WkPCztRpoXW2D8sHGbXyLgbYih0t2jk
