@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-export const validateToken = (req, res, next) => {
+export const validateTokenInCookie = (req, res, next) => {
 	try {
 		// Validate sending of JWT in headers and save in memory
 		const { token } = req.cookies
@@ -28,16 +28,17 @@ export const validateToken = (req, res, next) => {
  * 5.- Guarda en el Objeto 'req' la propiedad 'uid' del Payload y continua
  */
 
-export const validateTokenRespaldo = (req, res, next) => {
+export const validateToken = (req, res, next) => {
 	try {
 		// Validate sending of JWT in headers and save in memory
 		const token = req.headers.authorization?.replace('Bearer ', '')
-
+		console.log('RT: ' + token)
 		if (!token) throw new Error('Nonexistent Token')
 
 		// Get payload if JWT is valid
 		const payload = jwt.verify(token, process.env.JWT_SECRET)
 		req.uid = payload.uid
+		console.log('ValidateToken req.uid: ' + req.uid)
 
 		next()
 	} catch (error) {

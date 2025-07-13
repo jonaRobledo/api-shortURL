@@ -17,21 +17,32 @@
 		<script>
 			document.addEventListener('DOMContentLoaded', async (e) => {
 				try {
-					const response = await fetch('/api/v1/auth/getUser', {
+					const resToken = await fetch('/api/v1/auth/refresh', {
 						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json'
-						},
 						credentials: 'include'
 					})
 
-					console.log(response.ok, response.status)
+					const { token } = await resToken.json()
+					// console.log(token)
+
+					const response = await fetch('/api/v1/auth/getUser', {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + token
+						}
+						// credentials: 'include'
+					})
+
+					//console.log(response.ok, response.status)
 
 					const data = await response.json()
 					console.log(data)
 
 					document.getElementById('user-email').textContent = data.email
-				} catch (error) {}
+				} catch (error) {
+					console.log(error)
+				}
 			})
 		</script>
 	</body>
