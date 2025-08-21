@@ -48,4 +48,4 @@ GET http://localhost:3000/api/v1/auth/getUser
 
 ### Test /getUser route to Token validate (Bearer Token)
 GET http://localhost:3000/api/v1/auth/getUser
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Nzg0MmMyYmJlODRlZTM0NzdkZTI2Y2YiLCJpYXQiOjE3NTIyOTc5ODMsImV4cCI6MTc1MjMwNTE4M30._I_5EdKQX2M1WkPCztRpoXW2D8sHGbXyLgbYih0t2jk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Nzg0MmMyYmJlODRlZTM0NzdkZTI2Y2YiLCJpYXQiOjE3NTU4MDA2MTEsImV4cCI6MTc1NTgwMTUxMX0.iGfyT73vAzwS0yqJqKtWfAyVkiNxfloHoHhxMm4WWzs

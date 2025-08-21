@@ -45,6 +45,8 @@
 					console.log(response.ok, response.status)
 					const data = await response.json()
 					console.log(data)
+
+					window.location.href = 'userInfo.html'
 				} catch (error) {
 					console.log(error)
 				}

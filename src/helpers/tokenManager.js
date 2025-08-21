@@ -6,7 +6,6 @@ export const generateToken = (uid) => {
 
 	try {
 		const token = jwt.sign({ uid }, process.env.JWT_SECRET, { expiresIn })
-		//console.log('T: ', token)
 		return { token, expiresIn }
 	} catch (error) {
 		console.log(error)
@@ -20,7 +19,6 @@ export const generateRefreshToken = (uid) => {
 		const refreshToken = jwt.sign({ uid }, process.env.JWT_REFRESH, {
 			expiresIn
 		})
-		//console.log('RF: ', refreshToken)
 		return { refreshToken, expiresIn }
 	} catch (error) {
 		console.log(error)

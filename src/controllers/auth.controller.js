@@ -17,16 +17,11 @@ export const login = async (req, res) => {
 		const validatePassword = await findUser.comparePassword(password)
 		if (!validatePassword) throw { message: 'Invalid Credentials', code: 403 }
 
-		// console.log(findUser.id)
 		// Generate Token and Refresh Token
 		const { token, expiresIn } = generateToken(findUser.id)
 		const { refreshToken, expiresIn: expiresRefreshToken } = generateRefreshToken(
 			findUser.id
 		)
-		// console.log('-- Access Token --')
-		// console.log(token, expiresIn)
-		// console.log('-- Refresh Token --')
-		// console.log(refreshToken, expiresRefreshToken)
 
 		// Save Refresh Token in Cookies
 		res.cookie('refreshToken', refreshToken, {
@@ -65,11 +60,9 @@ export const register = async (req, res) => {
 // Get User data after validating access Token
 export const getUser = async (req, res) => {
 	try {
-		console.log('/getUser req.uid: ' + req.uid)
 		// Search User data by ID
 		const user = await User.findById(req.uid).lean()
-		console.log(user)
-		res.json({ uid, email: user.email })
+		res.json({ uid: user._id, email: user.email })
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({ error: 'Server Error' })
@@ -79,10 +72,23 @@ export const getUser = async (req, res) => {
 // Generate a new access Token after validating Refresh Token
 export const refresh = async (req, res) => {
 	try {
-		const { token, expiresIn } = generateToken(req.id)
+		const { token, expiresIn } = generateToken(req.uid)
 		res.json({ token, expiresIn })
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({ error: 'Server Error' })
 	}
 }
+
+export const logout = (req, res) => {
+	res.clearCookie('refreshToken')
+	res.json({ ok: true })
+}
+
+/**
+ * Flujo del Refresh Token
+ * 1.- Crear AccessToken y RefreshToken
+ * 2.- Utiliza el AccessToken hasta que expire
+ * 3.- Utiliza el RefreshToken para generar nuevos AccessTokens
+ * 4.- Cuando expira el RefreshToken debes volver a /login
+ */
